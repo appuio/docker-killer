@@ -10,16 +10,6 @@
 int main(int argc, char* argv[]) {
 
     /*
-    set the real, effective and set user id to root,
-    so that the process can adjust possible limits.
-    if the process doesn't have the CAP_SETUID capability, terminate the process.
-    */
-    if (setresuid(0, 0, 0) == -1) {
-        printf("Are you root?!\n");
-        return 1;
-    }
-
-    /*
     block all signals except for kill and stop.
     this allows to terminate the parent process (most likely a terminal)
     that this process is running in and turn it into a daemon.
